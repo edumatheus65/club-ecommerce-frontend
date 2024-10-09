@@ -5,14 +5,15 @@ import { CustomInputContainer } from './custom-input.style'
 // Styles
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  $hasError?: boolean
+  hasError?: boolean
 }
 
-const CustomInput: FunctionComponent<CustomInputProps> = React.forwardRef(
-  (props, ref) => {
-    return <CustomInputContainer {...props} ref={ref as any} />
-  }
-)
+const CustomInput: FunctionComponent<CustomInputProps> = React.forwardRef<
+  HTMLInputElement,
+  CustomInputProps
+>((props, ref) => {
+  return <CustomInputContainer {...props} forwardedAs="input" ref={ref} />
+})
 
 CustomInput.displayName = 'CustomInput'
 
